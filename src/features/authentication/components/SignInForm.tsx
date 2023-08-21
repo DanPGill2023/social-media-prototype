@@ -1,6 +1,6 @@
 import { signIn } from "next-auth/react";
 
-const LoginForm = () => {
+const SignInForm = () => {
   return (
     <>
       <div>
@@ -20,4 +20,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;
