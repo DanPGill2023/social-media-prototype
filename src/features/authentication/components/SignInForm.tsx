@@ -5,7 +5,7 @@ const LoginForm = () => {
     <>
       <div>
         <p className="animate-[jump-in_1s_both] p-10 text-2xl text-white">
-          Welcome to Dan's Social Media App! Sign in below
+          Welcome to Dan&apos;s Social Media App! Sign in below
         </p>
         <div className="flex flex-col items-center justify-center gap-4">
           <button
