@@ -45,6 +45,21 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
       },
     }),
+    signIn: ({ email }) => {
+      const isAllowedToSignIn = email?.verificationRequest
+        ? email.verificationRequest
+        : true;
+      if (isAllowedToSignIn) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
