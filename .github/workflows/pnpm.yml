@@ -1,6 +1,14 @@
 name: Social Media Prototype Workflow
 on:
   push:
+env:
+  DATABASE_URL: "file:./db.sqlite"
+  NEXTAUTH_SECRET: "/FGVi23v10LyAPnNSYmgCJSm6AzJfF7DCgbkjmb2ZgY="
+  NEXTAUTH_URL: "http://localhost:3000"
+  EMAIL_SERVER: "smtp://dangillsocialmediaapp@gmail.com:llfyzczzujbnavbd@smtp.gmail.com:587"
+  EMAIL_FROM: "noreply@socialmediaprototype.com"
+  GOOGLE_CLIENT_ID: "579696446538-6ha62in7r5becms7ri0t4f82po2sm8s9.apps.googleusercontent.com"
+  GOOGLE_CLIENT_SECRET: "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"
 jobs:
   build:
     runs-on: ubuntu-20.04
