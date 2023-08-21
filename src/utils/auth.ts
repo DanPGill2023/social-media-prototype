@@ -1,14 +1,19 @@
 import { type Session } from "next-auth";
 
+type SessionCallback = () => {
+  data: Session | undefined | null;
+  status: "loading" | "authenticated" | "unauthenticated";
+};
+
 const getStatus = (
-  fn: Function
+  fn: SessionCallback
 ): "loading" | "authenticated" | "unauthenticated" => {
   const { status } = fn();
 
   return status;
 };
 
-const getSession = (fn: Function): Session | undefined | null => {
+const getSession = (fn: SessionCallback): Session | undefined | null => {
   const { data: session } = fn();
 
   return session;
