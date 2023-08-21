@@ -1,7 +1,10 @@
 import Login from "./login";
+import Home from "./home";
+import { getSession } from "~/utils/auth";
 
 const Main = () => {
-  return <Login />;
+  const userHasSession = getSession();
+  return !userHasSession ? <Login /> : <Home />;
 };
 
 export default Main;
