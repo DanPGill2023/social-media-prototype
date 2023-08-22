@@ -2,16 +2,16 @@ name: Social Media Prototype Workflow
 on:
   push:
 env:
-  DATABASE_URL: "file:./db.sqlite"
-  NEXTAUTH_SECRET: "/FGVi23v10LyAPnNSYmgCJSm6AzJfF7DCgbkjmb2ZgY="
-  NEXTAUTH_URL: "http://localhost:3000"
-  EMAIL_SERVER: "smtp://dangillsocialmediaapp@gmail.com:llfyzczzujbnavbd@smtp.gmail.com:587"
-  EMAIL_FROM: "noreply@socialmediaprototype.com"
-  GOOGLE_CLIENT_ID: "579696446538-6ha62in7r5becms7ri0t4f82po2sm8s9.apps.googleusercontent.com"
-  GOOGLE_CLIENT_SECRET: "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"
+  DATABASE_URL: ${{ vars.DATABASE_URL }}
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  NEXTAUTH_URL: ${{ vars.NEXTAUTH_URL }}
+  EMAIL_SERVER: ${{ vars.EMAIL_SERVER }}
+  EMAIL_FROM: ${{ vars.EMAIL_FROM }}
+  GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID }}
+  GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18]
@@ -27,5 +27,7 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Run linter
+      - name: Build app
+        run: pnpm build
+      - name: Run linters
         run: pnpm lint
