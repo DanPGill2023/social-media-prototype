@@ -1,0 +1,33 @@
+name: Social Media Prototype Workflow
+on:
+  push:
+env:
+  DATABASE_URL: ${{ vars.DATABASE_URL }}
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  NEXTAUTH_URL: ${{ vars.NEXTAUTH_URL }}
+  EMAIL_SERVER: ${{ vars.EMAIL_SERVER }}
+  EMAIL_FROM: ${{ vars.EMAIL_FROM }}
+  GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID }}
+  GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build app
+        run: pnpm build
+      - name: Run linters
+        run: pnpm lint
