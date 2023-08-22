@@ -24,7 +24,7 @@ const PrivateRoute = ({ children }: PropsWithChildren) => {
 
   if ((!isAuthenticated || isLoading) && !isLoginPage) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e1065] to-[#4c0519]">
         <LoadingSpinnerWrapper isLoading={isLoading} />
       </div>
     );
