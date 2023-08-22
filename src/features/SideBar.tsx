@@ -27,6 +27,9 @@ const SideBar = ({ user }: User) => {
     "dark:bg-[#2e1065]",
     sideBarCollapsed ? "w-16" : "w-64",
   ].join(" ");
+  const buttonClassNames = [sideBarCollapsed ? "" : "ml-auto mr-[4px]"].join(
+    " "
+  );
 
   const handleToggleSideBar = () => {
     setSideBarCollapsed((prevSideBarStatus) => !prevSideBarStatus);
@@ -36,7 +39,11 @@ const SideBar = ({ user }: User) => {
     return (
       <div className={containerClassNames}>
         <div className="flex h-full items-start justify-center overflow-y-auto">
-          <button role="button" onClick={handleToggleSideBar}>
+          <button
+            className={buttonClassNames}
+            role="button"
+            onClick={handleToggleSideBar}
+          >
             <Image
               width={16}
               height={32}
