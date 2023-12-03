@@ -6,6 +6,7 @@ import "~/styles/globals.css";
 import { api } from "~/utils/api";
 
 import PrivateRoute from "~/features/authentication/components/PrivateRoute";
+import SideBar from "~/features/sidebar/components/SideBar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,7 +15,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <PrivateRoute>
-        <Component {...pageProps} />
+        <div className="flex dark:bg-pink-rabbits">
+          <SideBar />
+          <div className="min-h-screen flex-grow">
+            <Component {...pageProps} />
+          </div>
+        </div>
       </PrivateRoute>
     </SessionProvider>
   );
