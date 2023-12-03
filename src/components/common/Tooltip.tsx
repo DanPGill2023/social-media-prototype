@@ -3,18 +3,21 @@ import type { PropsWithChildren } from "react";
 type TooltipProps = {
   content: string;
   position?: "left" | "right" | "top" | "bottom";
+  containerClasses?: string[];
 };
 
 const Tooltip = ({
   content,
   children,
   position = "top",
+  containerClasses = [],
 }: PropsWithChildren<TooltipProps>) => {
   const containerClassNames = [
     "group",
     "relative",
     "flex",
     ...(position === "left" ? ["items-center"] : []),
+    ...containerClasses,
   ].join(" ");
   const toolTipClassNames = [
     "fixed",
